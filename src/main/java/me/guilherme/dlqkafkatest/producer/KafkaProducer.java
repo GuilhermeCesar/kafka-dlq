@@ -16,10 +16,8 @@ public class KafkaProducer {
     @Autowired
     private KafkaTemplate<String, RequestTest> kafkaTemplate;
 
-
     @Value("${app.config.topic.teste}")
     private String topicName;
-
 
 
     public void sendEvents(RequestTest user) {
@@ -29,5 +27,4 @@ public class KafkaProducer {
             System.out.println(ex.getMessage());
         }
     }
-
 }

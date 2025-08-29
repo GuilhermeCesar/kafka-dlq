@@ -28,8 +28,7 @@ public class KafkaConsumer {
                               @Header(KafkaHeaders.RECEIVED_TOPIC) String topic,
                               @Header(KafkaHeaders.OFFSET) long offset) throws RetryTestException {
         try {
-            log.info("Received: {} from {} offset {}", new ObjectMapper().writeValueAsString(requestTest), topic, offset);
-            //validate restricted IP before process the records
+            log.info("Recebeu: {} de {} offset {}", new ObjectMapper().writeValueAsString(requestTest), topic, offset);
             if (Boolean.TRUE.equals(requestTest.erro())) {
                 throw new RetryTestException("Teste de erro");
             }
