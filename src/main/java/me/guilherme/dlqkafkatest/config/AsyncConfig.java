@@ -12,7 +12,6 @@ import java.util.concurrent.Executor;
 @EnableAsync
 public class AsyncConfig {
 
-
     @Bean
     public ThreadPoolTaskScheduler taskScheduler() {
         ThreadPoolTaskScheduler scheduler = new ThreadPoolTaskScheduler();
@@ -21,6 +20,4 @@ public class AsyncConfig {
         scheduler.initialize();
         return scheduler;
     }
-
-
 }

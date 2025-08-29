@@ -5,7 +5,6 @@ import me.guilherme.dlqkafkatest.dto.RequestTest;
 import me.guilherme.dlqkafkatest.producer.KafkaProducer;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.annotation.RequestScope;
 
 @RestController
 @RequestMapping("/api/requests")
@@ -13,7 +12,6 @@ import org.springframework.web.context.annotation.RequestScope;
 public class KafkaRequestController {
 
     private final KafkaProducer kafkaProducer;
-
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping

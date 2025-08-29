@@ -34,7 +34,6 @@ spring:
       auto-startup: true
       poll-timeout: 8000
 
-
 app:
   config:
     topic:

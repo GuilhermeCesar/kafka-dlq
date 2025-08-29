@@ -22,10 +22,6 @@ import java.util.stream.Stream;
 public class KafkaConsumer {
 
 
-//    @RetryableTopic(
-//            backoff = @Backoff(value = 3000L, multiplier = 2, maxDelay = 7000L),
-//            timeout = "1000",
-//            include = {RuntimeException.class, RetryTestException.class}, traversingCauses = "true")// 3 topic N-1
     @RetryableTopic
     @KafkaListener(topics = "${app.config.topic.teste}", groupId = "${spring.kafka.consumer.group-id}")
     public void consumeEvents(RequestTest requestTest,

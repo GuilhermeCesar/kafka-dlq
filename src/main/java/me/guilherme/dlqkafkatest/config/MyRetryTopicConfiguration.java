@@ -21,11 +21,22 @@ public class MyRetryTopicConfiguration extends RetryTopicConfigurationSupport {
                 .backOff(new FixedBackOff(3000, 3));
     }
 
+    /**
+     * pt_BR = Definir os erros que darão retry
+     * en = Define with error can retry a queue
+     * @param nonBlockingFatalExceptions a {@link List} of fatal exceptions
+     * containing the framework defaults.
+     */
     @Override
     protected void manageNonBlockingFatalExceptions(List<Class<? extends Throwable>> nonBlockingFatalExceptions) {
         nonBlockingFatalExceptions.add(RetryTestException.class);
     }
 
+    /**
+     * pt_BR = Não commitar o erro
+     * us = It doesn't commit in kafka with error
+     * @param customizersConfigurer a {@link CustomizersConfigurer}.
+     */
     @Override
     protected void configureCustomizers(CustomizersConfigurer customizersConfigurer) {
         // Use the new 2.9 mechanism to avoid re-fetching the same records after a pause
@@ -34,9 +45,13 @@ public class MyRetryTopicConfiguration extends RetryTopicConfigurationSupport {
         });
     }
 
+    /**
+     * pt_BR = Faz o retry rebalancear
+     * en = Should rebalance the retry
+     * @return
+     */
     @Override
     protected Consumer<DeadLetterPublishingRecovererFactory> configureDeadLetterPublishingContainerFactory() {
         return dlprf -> dlprf.setPartitionResolver((cr, nextTopic) -> null);
     }
-
 }
