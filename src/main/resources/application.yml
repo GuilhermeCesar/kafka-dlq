@@ -1,0 +1,42 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: dlq-test
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      group-id: grupo-kafka-test-consumers
+      client-id: ${spring.application.name}
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring:
+          deserializer:
+            value:
+              delegate:
+                class: org.springframework.kafka.support.serializer.JsonDeserializer
+          json:
+            trusted:
+              packages: me.guilherme.dlqkafkatest.dto
+
+      max-poll-interval-ms: 300000 # Ajuste conforme necessário - Ajustar Tempo Máximo de Polling
+      session.timeout.ms: 15000 # Ajuste conforme necessário - Ajustar Timeout de Sessão
+      max-poll-records: 1 # Ajuste conforme necessário
+      max-poll-interval: 300000
+    listener:
+      ack-mode: RECORD
+      auto-startup: true
+      poll-timeout: 8000
+
+
+app:
+  config:
+    topic:
+      teste: fila-teste
+      teste-sem-dlq: teste-sem-dlq
