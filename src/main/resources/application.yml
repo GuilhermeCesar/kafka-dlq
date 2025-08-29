@@ -37,5 +37,4 @@ spring:
 app:
   config:
     topic:
-      teste: fila-teste
-      teste-sem-dlq: teste-sem-dlq
+      teste: fila.teste.crud.json

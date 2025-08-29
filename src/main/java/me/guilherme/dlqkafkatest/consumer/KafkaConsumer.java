@@ -22,7 +22,7 @@ import java.util.stream.Stream;
 public class KafkaConsumer {
 
 
-    @RetryableTopic
+    @RetryableTopic(dltTopicSuffix = ".dlt", retryTopicSuffix = ".retry")
     @KafkaListener(topics = "${app.config.topic.teste}", groupId = "${spring.kafka.consumer.group-id}")
     public void consumeEvents(RequestTest requestTest,
                               @Header(KafkaHeaders.RECEIVED_TOPIC) String topic,
